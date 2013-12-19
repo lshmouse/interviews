@@ -1,0 +1,160 @@
+给定一个n*n的board里面是0或1.算出里面独立0group的数量。比如
+
+0 0 1 1 1
+0 1 1 1 0
+1 1 1 1 0
+1 0 1 1 1
+1 1 1 1 1
+
+http://www.mitbbs.com/article_t/JobHunting/32542339.html
+
+
+给一张L*W的纸，给一堆 l(i)* w(i)的模板，每个size的模板有各自的price p(i)
+	，求这张纸所能剪出的最大值。
+
+	http://www.mitbbs.com/article_t/Recommend/31388711.html
+
+
+	给一个unsigned int数组，size为n，数组的sum = a，计算一个k的值，将数组中
+	所有大于k的数改为k之后，数组的sum变为b。Ex,  [1,2,5,7,7,8] = a = 30, b = 26,
+	                         那么k = 6，因为[1,2,5,6,6,6] = 26。
+							 要求时间复杂度是n*logn.
+
+							 http://www.mitbbs.com/article_t/Recommend/31388711.html
+
+
+							 有N个ad, (n是million级别的)
+	每个ad的表示为（id, value）
+	比如：
+	121 -> new
+	130 -> new york
+	145 -> new york time square
+	156 -> new york department store
+
+
+	假设有一 query = new york department store
+	规定ad中每个单词都包含在query中时，这个ad为valid （即ad是query的子集）
+	上述例子中ad 121， 130， 156是valid的，145是invalid
+
+
+	问：
+	如何设计一个solution，使得
+	vector<unsigned int> getValid(string query) （返回所有valid的ad的id）这个函
+	数在worst case时复杂度也能小于O(n)，面试官的说法是does not depend on N.
+
+
+	整个solution可以分两个阶段，第一阶段是preprocessing，这个可以是O(n)的，但是
+	第二阶段query阶段，也即调用函数getValid()，必须小于O(n)
+
+	http://www.mitbbs.com/article_t1/JobHunting/32425101_0_1.html
+
+
+	AND(OR(a,b),OR(c,d))
+
+
+	像这样一个逻辑表达式，输出成树的样子，
+
+
+	AND
+	|
+	+-OR
+	| |
+	| +-a
+	| |
+	| +-b
+	|
+	+-OR
+	|
+	+-c
+	|
+	+-d
+
+	http://www.mitbbs.com/article_t/JobHunting/32570463.html
+
+
+	every number can be uniquely represented as sum of distinct , non
+	: consecutive fibonacci numbers. Find the sequence given a number.
+	把一个数用斐波拉契数列表示出来
+
+	http://www.mitbbs.com/article_t/JobHunting/32546889.html
+
+
+	让找两个排序数组合并后的中位数
+
+	http://www.mitbbs.com/article_t1/JobHunting/32444173_32444179_1.html 
+
+
+	比较两个二叉树是否完全相同
+
+	http://www.mitbbs.com/article_t1/JobHunting/32444173_32444179_1.html
+
+
+	蓄水池抽样问题
+
+	http://www.mitbbs.com/article_t/JobHunting/32444819.html
+
+
+	前k大数
+
+	http://www.mitbbs.com/article_t/JobHunting/32444819.html
+
+
+	given  URLs, find the most frequent one
+	找出现最频繁的URL
+
+	http://www.mitbbs.com/article_t/JobHunting/32444819.html 
+
+
+	coding是string题目
+	  Jon likes, the weather... --> rehtaew... eht sekil, noJ
+	  反转字符串，标点符号和所在字符串也反转
+
+	  http://www.mitbbs.com/article_t/JobHunting/32444819.html
+
+coding: leetcode Jump Game II
+
+Given an array of non-negative integers, you are initially positioned at the
+first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Your goal is to reach the last index in the minimum number of jumps.
+
+For example:
+
+Given array A = [2,3,1,1,4]
+
+The minimum number of jumps to reach the last index is 2. (Jump 1 step from
+		index 0 to 1, then 3 steps to the last index.)
+
+http://www.mitbbs.com/article_t/JobHunting/32444819.html 
+
+coding: whether string S3 is a shuffle of S1+S2?
+
+比较字符出现字数
+
+http://www.mitbbs.com/article_t/JobHunting/32444819.html 
+
+概率题: 金刚坐飞机问题
+
+http://www.mitbbs.com/article_t/JobHunting/32444819.html 
+
+coding: print n parenthesis
+
+打印所有可能的括号组合
+
+http://www.mitbbs.com/article_t/JobHunting/32444819.html 
+
+实现一个栈，支持pop push get_min操作
+排序：原数组为1 2 3 4 5 6 7 8 9 10，排序后为1 6 2 7 3 8 4 9 5
+10，排序只与序号有关，与数值无关
+
+perfect shuffle问题
+1，找出java code中效率低的地方：
+list<int> L;
+for (i = 0; i < L.size(); ++i)
+{
+	    print L.get(i)
+}
+
+利用互斥锁实现读写锁
