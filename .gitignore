@@ -1,0 +1,7 @@
+*.svn*
+*.pyc
+*~
+a.out
+.project
+.classpath
+.settings

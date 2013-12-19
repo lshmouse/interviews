@@ -1,0 +1,103 @@
+Using hadoop mapreduce to solve these big data problems.
+
+Task#1
+=========
+problem
+-------
+Input is user event log records with following details Ð
+Schema: event_type STRING, user_id BIGINT, event_unix_timestamp BIGINT, some_1k_data STRING
+
+for each user, time elapsed between his/her first and last event.
+
+mapper 
+-------
+extra userid and event_unix_timestamp and output
+
+combiner
+---------
+find the minimum and maximum event_unix_timestamp for each user and output each userid's 
+minimum and maximum event_unix_timestamp. 
+
+This combiner is to reduce the data that needed to transfer in shuffle phrase and 
+accelerate the mr jobs
+
+reducer:
+-----------
+Same code as combiner and output time elapsed between user's first and last event.
+
+Test
+----------
+MRunit test for mapper/reducer in TaskOneTest
+
+How to run
+-------------
+complie the java maven project:
+mvn clean package
+
+copy hadoop cluster config to conf dir
+
+in the dir: target/assignment-1.0-SNAPSHOT/bin
+bash TaskOne.sh input output
+ 
+Task#2
+=========
+problem
+---------
+Input is user event log records with following details Ð
+Schema: event_type STRING, user_id BIGINT, event_unix_timestamp BIGINT, some_1k_data STRING
+
+We would now like to find time elapsed as defined in task (1), but only considering click and view events. 
+We would also like all records with 'other' event type written out to separate files for some post processing.
+
+brain storm
+-------------
+(1) Create an additional file writer in mapper to write the 'other' event type to a separate file. 
+But the problem is that the file number of this output may very large, for each mapper usually process 64M data(hdfs trunk size).
+The worst situation the that all files are small files: 1m or 10M.  It is not best-practice for we using hdfs.
+
+(2) Create an additional file writer in reducer to write the 'other' event type to a separate file. We can use MultipleOutputs to do this.
+The problem is that there is more data io for 'other' event log in shuffle phrase.
+
+At last, i implement the method (2)
+
+mapper 
+-------
+extra userid and event_unix_timestamp as type 1 output.
+extra other event records log as type 2 output.
+
+combiner
+---------
+for type 1 input.
+find the minimum and maximum event_unix_timestamp for each user and output each userid's 
+minimum and maximum event_unix_timestamp. 
+
+This combiner is to reduce the data that needed to transfer in shuffle phrase and 
+accelerate the mr jobs
+
+for type 2 input.
+Just output.
+
+reducer:
+-----------
+for type 1 inputs.
+Same code as combiner and output time elapsed between user's first and last event.
+
+for type 2 inputs.
+Output them to otherRecords outputs.
+
+Test
+----------
+MRunit test for mapper/reducer in TaskTwoTest
+
+How to run
+-------------
+complie the java maven project:
+mvn clean package
+
+copy hadoop cluster config to conf dir
+
+in the dir: target/assignment-1.0-SNAPSHOT/bin
+bash TaskTwo.sh input output
+
+
+job-local.xml is for run mapreduce in local machine

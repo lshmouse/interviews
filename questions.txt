@@ -1,0 +1,28 @@
+Rocket Fuel:
+
+random permutation of a string, inversion pairs, random sample from a infinite data stream
+1, Implement postorder traversal - most people will use recursion, I did so. 
+2, Follow-up: Not to use recursion but use for/while loop. 
+3, write a function for the for/while loop to get the next pointer with the current pointer as the input.
+
+How to find an element in 2-d array sorted row wose and column wise get the median value from a very large array. Assume you can only go through the array once.
+The second one is to find the total number of 1s in a byte array
+
+cloudera
+Distributed Merge Sort algorithm
+1TB of data on my laptop --> sort the data 
+Generate a random 4 letter word from /usr/share/dict/words
+file contains a billion integers, try to find any one integer that is not in the file
+How would you find two numbers that add to a sum in an array?
+How would you find three numbers that add to a sum in an array?
+How would you implement hash table on your own? Write the code for implementing your own hash table? 
+If you wanted to make a highly concurrent cache with a least recently used replacement policy, what data structures would you use? How would this scale  per number of threads?
+
+facebook
+Given a bipartite graph, separate the vertices into two sets.
+Given two unsorted arrays, one with event start times and one with end times, find out if any two events overlap
+
+google:
+
+Given two unsorted integer arrays A & B of unequal length.Find an element from A(say 'X') and another element from B(say 'Y') such that |X-Y| is minimum.
+Given two log files, each with a billion usernames (each username appended to the log file), find the usernames existing in both documents?
