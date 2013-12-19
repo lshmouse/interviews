@@ -1,0 +1,4 @@
+Some tips for interviews.
+
+http://www.pgbovine.net/programming-interview-tips.htm
+
