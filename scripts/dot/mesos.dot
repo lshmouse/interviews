@@ -1,0 +1,27 @@
+digraph mesos{
+	graph[bb="0, 0, 1000,1000", splines=true];
+
+	user [label="User"];
+	
+	user -> master [label="Submit job"];
+	
+	subgraph cluster{
+
+		label = "mesos cluster";
+	
+		master [label="Mosos Master", color=blue, style=filled];
+		
+		slave1 [label="Mosos slave 1"];
+		slave2 [label="Mosos slave ..."];
+		slave3 [label="Mosos slave N"];
+		
+		slave1 -> master[label="hearbeat"];
+		slave2 -> master[label="hearbeat"];
+		slave3 -> master[label="hearbeat"];
+		
+		master -> slave1[label="assign task"];
+		slave1 -> master[label="report task status"];
+		master -> slave1[label="kill task"];
+
+	}
+}

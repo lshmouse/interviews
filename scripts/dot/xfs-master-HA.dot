@@ -1,0 +1,11 @@
+digraph xfs-mater-HA {
+	label= "xfs master HA";
+
+	ZK[label"ZooKeeper"];
+
+	Master_Primay [label="Master Primary"];	
+	Master_Replica_1 [label="Master Replica"];
+	Master_Replica_1 [label="Master Replica"];
+	Master_Newbie [label="Master Replica"];
+
+}

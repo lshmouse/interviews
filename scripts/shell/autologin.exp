@@ -1,0 +1,33 @@
+#!/usr/bin/expect 
+#set timeout 2
+
+if { $argc != 1 } {
+send_user "Usage: autologin server-ip !\n"
+exit
+}
+
+set tmp_ip 跳板机ip 
+set ip [lindex $argv 0]
+set timeout 10
+set user 用户名
+set password 密码
+
+spawn ssh -p 36000 $user@$tmp_ip
+
+expect "*yes/no*"
+send "yes\r"
+expect "*assword:*"
+send "$password\r"
+expect "*assword:*"
+send "$password\r"
+expect "*login*"
+send "ssh -p 36000 $user@$ip\r"
+
+expect "*yes/no*"
+send "yes\r"
+expect "*assword:*" 
+send "$password\r"
+
+send "sudo su - user_00\r"
+
+interact

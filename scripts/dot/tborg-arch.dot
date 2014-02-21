@@ -1,0 +1,34 @@
+digraph mesos{
+	tborgSdk [label = "tborg sdk", shape=box];
+	tborgGate [label = "tborg gate", shape=box];
+	nameserver [label ="name server", shape=box];
+	xfs [label ="xfs", shape=box];
+
+	ES1 [label ="ES 1", shape =box];
+
+	subgraph cluster0{
+		label = "tborg-master";
+
+		jobMgr [label="job manager", color=blue, style=filled];
+		quotaMgr [label="quota manager", color=blue, style=filled];
+		ESMgr [label="Es manager"];
+		scheduler [label="job scheduler"];
+		executor [label="exector"];
+
+		scheduler -> jobMgr [label="select jobs"];
+		scheduler -> quotaMgr [label="query user quota"];
+		scheduler -> ESMgr [label="query es status"];
+		scheduler -> executor [label="schedule task"];
+	}
+	
+	tborgSdk -> tborgGate [label = "submit job"];
+	tborgGate -> jobMgr [label = "submit job"];
+	jobMgr -> xfs [label = "Write mutation to xfs"];
+
+	jobMgr -> nameserver [label = "write task ip:port to name server"];
+
+	executor -> xfs [label="write mutation to xfs"];
+	executor -> ES1 [label = "execute task"];
+	ES1 -> ESMgr [label = "register to ES manager"];	
+	ES1 -> ESMgr [label = "report to ES manager"];	
+}

@@ -1,0 +1,40 @@
+digraph mapreduce_startup{
+	label ="Mapreuce Start Process";
+
+	Tborg [label="Tborg", color=blue, style=filled, shape=box];
+
+	// XFS [label="XFS"];
+	ZooKeeper [label="ZooKeeper"];
+
+	Controller[label="Controller"];
+
+	subgraph cluster_mapreduce{
+		label = "Mapreduce";
+		Master[label="Mapreduce Master", color=red, style=filled, shape=box];
+		subgraph cluster_workers{
+			Worker1[label="Mapreduce Worker 1"];
+			Worker2[label="Mapreduce Worker ..."];
+			Worker3[label="Mapreduce Worker N"];
+		}
+	}
+
+	Controller -> Tborg [label="1: Submit Master job"];
+	Tborg -> Master [label="2: Start Master"];
+	Master -> ZooKeeper[label="3: Write ip:port"];
+	Controller -> ZooKeeper [label="4: Query master ip:port"];
+	Controller -> Master [label="5: Submit mapreduce job"];
+	Master -> Tborg [label="6: Submit Worker Job"];
+	
+	Tborg -> Worker1 [label="7: Start Worker"];
+	Tborg -> Worker2 [label="7: Start Worker"];
+	Tborg -> Worker3 [label="7: Start Worker"];
+	
+	// Worker1 -> Master [label="Register, Heatbeat, report"];
+	// Worker2 -> Master [label="Register, Heatbeat, report"];
+	// Worker3 -> Master [label="Register, Heatbeat, report "];
+
+	// Master -> Worker1 [label="Assign map, reduce, shuffle task"];
+	
+	// Worker1 -> XFS [label="map task read xfs data"];
+	// Worker1 -> XFS [label="reduce task write data to xfs"];
+}
